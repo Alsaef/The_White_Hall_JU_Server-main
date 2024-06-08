@@ -122,6 +122,22 @@ async function run() {
       const result = await packagesCollection.insertOne(package);
       res.json(result);
     });
+    app.patch('/packages/:id', async (req, res) => {
+      const { id } = req.params;
+      const updateData = req.body;
+
+      try {
+          const result = await packagesCollection.updateOne(
+              { _id: new ObjectId(id) },
+              { $set: updateData }
+          );
+
+          res.send(result);
+      } catch (error) {
+          console.error(error);
+          res.status(500).send('Internal server error');
+      }
+  });
 
     // POST Galary imaage
     app.post("/galary", async (req, res) => {
