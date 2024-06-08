@@ -20,7 +20,7 @@ console.log(uri);
 
 async function run() {
   try {
-    await client.connect();
+     client.connect();
     const database = client.db("TheWhiteHall");
     const packagesCollection = database.collection("packages");
     const ordersCollection = database.collection("orders");
